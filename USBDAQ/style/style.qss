@@ -1,0 +1,26 @@
+QPushButton#btnClose
+{
+    border:none;
+    border-top-right-radius:5px;
+    border-image:url(:/resource/close_normal.png);
+}
+
+QPushButton#btnClose:hover
+{
+    border-image:url(:/resource/close_hover.png);
+}
+
+QPushButton#btnClose:pressed
+{
+    border-image:url(:/resource/close_press.png);
+}
+
+
+#QLineEdit
+{
+        border: 2px solid gray;
+        border-radius: 5px;
+        padding: 0 8px;
+        background:rgb(234, 234, 234);
+        selection-background-color: darkgray;
+}

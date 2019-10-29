@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +39,7 @@ RESOURCES += \
     resource.qrc \
     style.qrc
 
-unix:!macx|win32: LIBS += -L$$PWD/./ -lUSBDAQ_DLL_V12
-
-INCLUDEPATH += $$PWD/.
-DEPENDPATH += $$PWD/.
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

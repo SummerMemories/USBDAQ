@@ -2,15 +2,18 @@
 #define WIDGET_H
 
 #include <QGraphicsDropShadowEffect>
-#include <QWidget>
-#include "USBDAQ_DLL_V12.h"
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QMessageBox>
 #include <QMouseEvent>
+#include <QPushButton>
+#include <QComboBox>
+#include <QWidget>
 #include <QPainter>
 #include <QPoint>
 #include <QFile>
 #include <QDebug>
 #include <QTimer>
-
 
 namespace Ui {
 class Widget;
@@ -24,27 +27,32 @@ public:
     explicit Widget(QWidget *parent = nullptr);
     ~Widget();
 
+    void initUi();
     void changeStyle();
+
+    //打开串口
+    void openPort();
+    //获取所有可用的串口列表
+    QStringList getPortNameList();
 
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
 
-
 private:
     Ui::Widget *ui;
     QPoint z;
 
-    QTimer *m_Timer1;
+    QTimer *m_Timer;
+    QSerialPort serial;
+    QStringList m_portNameList;
+
 
 private slots:
+    void serialPort_readyRead();
+
     void on_btnClose_clicked();
-    void on_btnOpenDevice_clicked();
-    void on_btnCloseDevice_clicked();
-    void on_btnGetData1_clicked();
-
-    void onUpdateLineEdit();
-
+    void on_btn_Openport_clicked();
 };
 
 #endif // WIDGET_H

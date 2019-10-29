@@ -6,6 +6,28 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    //初始化图形界面
+    initUi();
+    //改变按钮的样式
+    changeStyle();
+    m_Timer = new QTimer();
+
+    m_portNameList = getPortNameList();
+    ui->ComName->addItems(m_portNameList);
+
+    //QObject::connect(&serial, &QSerialPort::readyRead, this, &Widget::serialPort_readyRead);
+    connect(m_Timer,SIGNAL(timeout()),this,SLOT(serialPort_readyRead()));
+    m_Timer->start(2000);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+void Widget::initUi()
+{
     //去掉标题栏
     this->setWindowFlags(Qt::FramelessWindowHint);
 
@@ -22,21 +44,7 @@ Widget::Widget(QWidget *parent) :
     shadow->setOffset(0);
 
     ui->shadowWidget->setGraphicsEffect(shadow);
-
-    //改变按钮的样式
-    changeStyle();
-
-    //设置定时器
-    m_Timer1 = new QTimer;
-    connect(m_Timer1, SIGNAL(timeout()), this, SLOT(onUpdateLineEdit()));
-
 }
-
-Widget::~Widget()
-{
-    delete ui;
-}
-
 
 //改变按钮样式
 void Widget::changeStyle()
@@ -91,69 +99,61 @@ void Widget::on_btnClose_clicked()
     this->close();
 }
 
-//打开设备
-void Widget::on_btnOpenDevice_clicked()
+//得到端口名字并存入StringList列表中，然后在ComboBox中显示
+QStringList Widget::getPortNameList()
 {
-    int result = OpenUsbV12();
-    if(result == -1)
+    QStringList m_serialPortName;
+    foreach(const QSerialPortInfo &info,QSerialPortInfo::availablePorts())
     {
-
+        m_serialPortName << info.portName();
+        qDebug()<<"serialPortName:"<<info.portName();
     }
-    else {
-
-    }
-    qDebug()<<result;
-}
-
-//关闭设备
-void Widget::on_btnCloseDevice_clicked()
-{
-    m_Timer1->stop();
-    int result = CloseUsbV12();
-    if(result == -1)
-    {
-
-    }
-    else {
-
-    }
-    qDebug()<<result;
+    return m_serialPortName;
 }
 
 
-//AD1单通道连续采样设置，并启动AD采集
-void Widget::on_btnGetData1_clicked()
+void Widget::on_btn_Openport_clicked()
 {
-    if(m_Timer1->isActive())
+    if(ui->btn_Openport->text()==QString("打开串口"))
     {
-        m_Timer1->stop();
-    }
-    else {
-        //单位为毫秒值 设置获取数据间隔时间
-        m_Timer1->start(1);
-    }
+        //设置串口名
+        serial.setPortName(ui->ComName->currentText());
+        serial.setBaudRate(QSerialPort::Baud115200,QSerialPort::AllDirections);//设置波特率和读写方向
+        serial.setDataBits(QSerialPort::Data8);      //数据位为8位
+        serial.setFlowControl(QSerialPort::NoFlowControl);//无流控制
+        serial.setParity(QSerialPort::NoParity); //无校验位
+        serial.setStopBits(QSerialPort::OneStop); //一位停止位
 
+        //打开串口
+        if(!serial.open(QIODevice::ReadWrite))
+        {
+            qDebug()<<"无法打开串口";
+            return;
+        }
+        ui->btn_Openport->setText("关闭串口");
+
+    }
+    else
+    {
+        serial.close();
+        m_Timer->stop();
+        ui->btn_Openport->setText("打开串口");
+    }
 }
 
-//实时跟新并且显示获取的数据值
-void Widget::onUpdateLineEdit()
+//接收从单片机发送来的信息并且解析
+void Widget::serialPort_readyRead()
 {
-    float adResult[10]={0.0};
-    QString Result[10];
-    for(int i = 0; i < 10; i++)
-        ADSingleV12(0, i, 1, &adResult[i]);
-
-    for(int i =0 ; i < 10; i++)
-        Result[i] = QString::number(adResult[i], 'f', 2);
-
-    ui->showData1_action->setText(Result[0]);
-    ui->showData2_action->setText(Result[1]);
-    ui->showData3_action->setText(Result[2]);
-    ui->showData4_action->setText(Result[3]);
-    ui->showData5_action->setText(Result[4]);
-    ui->showData6_action->setText(Result[5]);
-    ui->showData7_action->setText(Result[6]);
-    ui->showData8_action->setText(Result[7]);
-    //ui->showData9_action->setText(Result[8]);
-    //ui->showData10_action->setText(Result[9]);
+    //从接收缓冲区中读取数据
+    QByteArray buffer = serial.readAll();
+    QString str;
+    if(!buffer.isEmpty())
+    {
+        str = buffer;
+        if(str.endsWith("\n"))
+        {
+            ui->showData1_action->setText(str);
+        }
+    }
+    qDebug()<<"receive str:"<< str;
 }

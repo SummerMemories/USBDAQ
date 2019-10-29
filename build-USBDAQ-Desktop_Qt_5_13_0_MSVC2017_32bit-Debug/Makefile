@@ -230,6 +230,7 @@ Makefile: ..\USBDAQ\USBDAQ.pro D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmak
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_config.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\common\msvc-version.conf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\toolchain.prf \
@@ -256,6 +257,7 @@ Makefile: ..\USBDAQ\USBDAQ.pro D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmak
 		..\USBDAQ\USBDAQ.pro \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Widgets.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Gui.prl \
+		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5SerialPort.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Core.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\qtmain.prl
 	$(QMAKE) -o Makefile ..\USBDAQ\USBDAQ.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -412,6 +414,7 @@ D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_functions.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_config.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\spec_post.prf:
+.qmake.stash:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\common\msvc-version.conf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\toolchain.prf:
@@ -438,6 +441,7 @@ D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\lex.prf:
 ..\USBDAQ\USBDAQ.pro:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Widgets.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Gui.prl:
+D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5SerialPort.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Core.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\qtmain.prl:
 qmake: FORCE

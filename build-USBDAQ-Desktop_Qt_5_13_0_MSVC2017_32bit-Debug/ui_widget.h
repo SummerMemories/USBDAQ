@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
@@ -78,8 +79,9 @@ public:
     QPushButton *btnGetData8;
     QPushButton *btnGetData9;
     QPushButton *btnGetData10;
-    QPushButton *btnOpenDevice;
-    QPushButton *btnCloseDevice;
+    QPushButton *btn_Openport;
+    QComboBox *ComName;
+    QLabel *label;
 
     void setupUi(QWidget *Widget)
     {
@@ -162,7 +164,7 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         gridLayoutWidget = new QWidget(frame);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(90, 10, 631, 511));
+        gridLayoutWidget->setGeometry(QRect(90, 10, 651, 511));
         gridLayout = new QGridLayout(gridLayoutWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
@@ -190,7 +192,7 @@ public:
         btnGetData5->setObjectName(QString::fromUtf8("btnGetData5"));
         btnGetData5->setMinimumSize(QSize(84, 30));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("\351\232\266\344\271\246"));
+        font1.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221 Light"));
         font1.setPointSize(10);
         btnGetData5->setFont(font1);
 
@@ -570,14 +572,17 @@ public:
         btnGetData6 = new QPushButton(gridLayoutWidget);
         btnGetData6->setObjectName(QString::fromUtf8("btnGetData6"));
         btnGetData6->setMinimumSize(QSize(84, 30));
-        btnGetData6->setFont(font1);
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\351\232\266\344\271\246"));
+        font4.setPointSize(10);
+        btnGetData6->setFont(font4);
 
         gridLayout->addWidget(btnGetData6, 6, 0, 1, 1);
 
         btnGetData7 = new QPushButton(gridLayoutWidget);
         btnGetData7->setObjectName(QString::fromUtf8("btnGetData7"));
         btnGetData7->setMinimumSize(QSize(84, 30));
-        btnGetData7->setFont(font1);
+        btnGetData7->setFont(font4);
 
         gridLayout->addWidget(btnGetData7, 7, 0, 1, 1);
 
@@ -602,12 +607,68 @@ public:
 
         gridLayout->addWidget(btnGetData10, 10, 0, 1, 1);
 
-        btnOpenDevice = new QPushButton(frame);
-        btnOpenDevice->setObjectName(QString::fromUtf8("btnOpenDevice"));
-        btnOpenDevice->setGeometry(QRect(750, 190, 93, 28));
-        btnCloseDevice = new QPushButton(frame);
-        btnCloseDevice->setObjectName(QString::fromUtf8("btnCloseDevice"));
-        btnCloseDevice->setGeometry(QRect(750, 100, 93, 28));
+        btn_Openport = new QPushButton(frame);
+        btn_Openport->setObjectName(QString::fromUtf8("btn_Openport"));
+        btn_Openport->setGeometry(QRect(390, 530, 121, 51));
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
+        font5.setPointSize(10);
+        btn_Openport->setFont(font5);
+        ComName = new QComboBox(frame);
+        ComName->setObjectName(QString::fromUtf8("ComName"));
+        ComName->setGeometry(QRect(260, 530, 121, 51));
+        ComName->setFont(font3);
+        ComName->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+"        height: 25px;\n"
+"        border-radius: 4px;\n"
+"        border: 1px solid rgb(111, 156, 207);\n"
+"        background: white;\n"
+"}\n"
+"QComboBox:enabled {\n"
+"        color: rgb(84, 84, 84);\n"
+"}\n"
+"QComboBox:!enabled {\n"
+"        color: rgb(80, 80, 80);\n"
+"}\n"
+"QComboBox:enabled:hover, QComboBox:enabled:focus {\n"
+"        color: rgb(51, 51, 51);\n"
+"}\n"
+"QComboBox::drop-down {\n"
+"        width: 20px;\n"
+"        border: none;\n"
+"        background: transparent;\n"
+"}\n"
+"QComboBox::drop-down:hover {\n"
+"        background: rgba(255, 255, 255, 30);\n"
+"}\n"
+"QComboBox::down-arrow {\n"
+"        image: url(:/White/arrowBottom);\n"
+"}\n"
+"QComboBox::down-arrow:on {\n"
+"        /**top: 1px;**/\n"
+"}\n"
+"QComboBox QAbstractItemView {\n"
+"        border: 1px solid rgb(111, 156, 207);\n"
+"        background: white;\n"
+"        outline: none;\n"
+"}\n"
+"QComboBox QAbstractItemView::item {\n"
+"        height: 25px;\n"
+"        color: rgb(73, 73, 73);\n"
+"}\n"
+"QComboBox QAbstractItemVi"
+                        "ew::item:selected {\n"
+"        background: rgb(232, 241, 250);\n"
+"        color: rgb(2, 65, 132);\n"
+"}"));
+        label = new QLabel(frame);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(140, 530, 131, 41));
+        QFont font6;
+        font6.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
+        font6.setPointSize(14);
+        label->setFont(font6);
+        label->setAlignment(Qt::AlignCenter);
 
         verticalLayout->addWidget(frame);
 
@@ -625,6 +686,7 @@ public:
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
         title->setText(QCoreApplication::translate("Widget", "\347\275\227\345\271\263\345\217\230\347\224\265\347\253\231 500kV 1563 \345\274\200\345\205\263\344\270\211\347\233\270\344\270\215\344\270\200\350\207\264\347\273\247\347\224\265\345\231\250\350\257\225\351\252\214\347\273\223\346\236\234", nullptr));
         btnClose->setText(QString());
+        showData4_ratio->setText(QString());
         btnGetData5->setText(QCoreApplication::translate("Widget", "5", nullptr));
         showData6_action->setText(QCoreApplication::translate("Widget", "0.00", nullptr));
         btnGetData3->setText(QCoreApplication::translate("Widget", "3", nullptr));
@@ -637,6 +699,7 @@ public:
         showData3_action->setText(QCoreApplication::translate("Widget", "0.00", nullptr));
         showData10_action->setText(QCoreApplication::translate("Widget", "0.00", nullptr));
         showData4_action->setText(QCoreApplication::translate("Widget", "0.00", nullptr));
+        showData5_ratio->setText(QString());
         label_3->setText(QCoreApplication::translate("Widget", "\350\277\224\345\233\236\347\224\265\345\216\213\345\200\274(V)", nullptr));
         showData7_action->setText(QCoreApplication::translate("Widget", "0.00", nullptr));
         btnGetData2->setText(QCoreApplication::translate("Widget", "2", nullptr));
@@ -649,8 +712,8 @@ public:
         btnGetData8->setText(QCoreApplication::translate("Widget", "8", nullptr));
         btnGetData9->setText(QCoreApplication::translate("Widget", "9", nullptr));
         btnGetData10->setText(QCoreApplication::translate("Widget", "10", nullptr));
-        btnOpenDevice->setText(QCoreApplication::translate("Widget", "\346\211\223\345\274\200\350\256\276\345\244\207", nullptr));
-        btnCloseDevice->setText(QCoreApplication::translate("Widget", "\345\205\263\351\227\255\350\256\276\345\244\207", nullptr));
+        btn_Openport->setText(QCoreApplication::translate("Widget", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "\347\253\257\345\217\243\345\217\267", nullptr));
     } // retranslateUi
 
 };

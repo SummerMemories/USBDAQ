@@ -1,4 +1,4 @@
-QPushButton#btnClose
+﻿QPushButton#btnClose
 {
     border:none;
     border-top-right-radius:5px;
@@ -13,6 +13,23 @@ QPushButton#btnClose:hover
 QPushButton#btnClose:pressed
 {
     border-image:url(:/resource/close_press.png);
+}
+
+QPushButton#btnMin
+{
+    border:none;
+    border-top-right-radius:5px;
+    border-image:url(:/resource/min_normal.png);
+}
+
+QPushButton#btnMin:hover
+{
+    border-image:url(:/resource/min_hover.png);
+}
+
+QPushButton#btnMin:pressed
+{
+    border-image:url(:/resource/min_press.png);
 }
 
 

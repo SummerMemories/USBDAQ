@@ -230,7 +230,6 @@ Makefile: ..\USBDAQ\USBDAQ.pro D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmak
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_config.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\spec_post.prf \
-		.qmake.stash \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\common\msvc-version.conf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\toolchain.prf \
@@ -247,6 +246,7 @@ Makefile: ..\USBDAQ\USBDAQ.pro D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmak
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\moc.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\opengl.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\uic.prf \
+		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\dumpcpp.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qmake_use.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\file_copies.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\windows.prf \
@@ -255,6 +255,8 @@ Makefile: ..\USBDAQ\USBDAQ.pro D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmak
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\yacc.prf \
 		D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\lex.prf \
 		..\USBDAQ\USBDAQ.pro \
+		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5AxContainer.prl \
+		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5AxBase.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Widgets.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Gui.prl \
 		D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5SerialPort.prl \
@@ -414,7 +416,6 @@ D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_functions.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qt_config.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\spec_post.prf:
-.qmake.stash:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\common\msvc-version.conf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\toolchain.prf:
@@ -431,6 +432,7 @@ D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\resources.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\moc.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\opengl.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\uic.prf:
+D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\dumpcpp.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\qmake_use.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\file_copies.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\win32\windows.prf:
@@ -439,6 +441,8 @@ D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\exceptions.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\yacc.prf:
 D:\Qt\Qt5\5.13.0\msvc2017\mkspecs\features\lex.prf:
 ..\USBDAQ\USBDAQ.pro:
+D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5AxContainer.prl:
+D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5AxBase.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Widgets.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5Gui.prl:
 D:\Qt\Qt5\5.13.0\msvc2017\lib\Qt5SerialPort.prl:

@@ -6,7 +6,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-
+    setFocusPolicy(Qt::StrongFocus);
     //初始化图形界面
     initUi();
     //改变按钮的样式
@@ -55,6 +55,28 @@ void Widget::initUi()
     ui->lineEdit->setFocusPolicy(Qt::NoFocus);
     ui->lineEdit_2->setFocusPolicy(Qt::NoFocus);
     ui->lineEdit_5->setFocusPolicy(Qt::NoFocus);
+    ui->lineEdit_9->setFocusPolicy(Qt::NoFocus);
+    ui->lineEdit_10->setFocusPolicy(Qt::NoFocus);
+
+    /*报警指示框*/
+    const QString m_SheetStyle = "border-radius: 8px;  border:1px solid black;";
+    ui->label_7->setStyleSheet(m_SheetStyle);
+
+    /*报警指示灯*/
+    scene=new QGraphicsScene;  //定义了一个布局
+    ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff) ;
+    ui->view->setVerticalScrollBarPolicy ( Qt::ScrollBarAlwaysOff ) ;
+
+    scene->setSceneRect(-200,-200,200,200);  //定义布局的边界
+    flashitem *item=new flashitem();
+    //item->startFlash(false);
+    scene->addItem(item);
+    item->setPos(-50,-50);
+
+    ui->view->setSceneRect(-200,-200,200,200);
+    ui->view->setScene(scene);
+    ui->view->setStyleSheet("border:1px");//无边框，背景透明
+    ui->view->setAutoFillBackground(true);//这个的话就不会了，只有view透明
 
     changeTableWidget();
     addLogo();
@@ -87,17 +109,69 @@ void Widget::changeTableWidget()
 
 
     counts = 0;
-    newItem[counts] = new QTableWidgetItem;     //既然setSpan()函数破坏了itemAt()的索引，我们可以通过重新建立新的item的方式进行访问方法如下
+    newItem[counts] = new QTableWidgetItem;
     ui->tableWidget->setItem(0, 0, newItem[counts]);
     newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     newItem[counts]->setText("1");
     counts++;
 
-    newItem[counts] = new QTableWidgetItem;     //既然setSpan()函数破坏了itemAt()的索引，我们可以通过重新建立新的item的方式进行访问方法如下
+    newItem[counts] = new QTableWidgetItem;
+    ui->tableWidget->setItem(0, 1, newItem[counts]);
+    newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    newItem[counts]->setText("");
+    counts++;
+
+    newItem[counts] = new QTableWidgetItem;
     ui->tableWidget->setItem(5, 3, newItem[counts]);
     newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     newItem[counts]->setText("平均值");
     counts++;
+
+    for(int i = 0;i < 6; i++)
+    {
+        for(int j = 4; j < 10; j++)
+        {
+            newItem[counts] = new QTableWidgetItem;
+            ui->tableWidget->setItem(i, j, newItem[counts]);
+            newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            newItem[counts]->setText(QString::number(counts));
+            counts++;
+        }
+    }
+
+
+    QFile checkBoxStyleSheet(":/style/checkBox.qss");
+    checkBoxStyleSheet.open(QIODevice::ReadOnly);
+    QString qss1 = checkBoxStyleSheet.readAll();
+
+    QFile buttonStyleSheet(":/style/Button.qss");
+    buttonStyleSheet.open(QIODevice::ReadOnly);
+    QString qss2 = buttonStyleSheet.readAll();
+
+    for(int i = 0; i < 5; i++)
+    {
+        widget[i] = new QWidget();
+        delBtn[i] = new QPushButton(widget[i]);
+        delBtn[i]->setGeometry(65,4,28,28);
+        delBtn[i]->setStyleSheet(qss2);
+        checkBox[i] = new QCheckBox(widget[i]);
+        checkBox[i]->setGeometry(35,3,30,30);
+        checkBox[i]->setStyleSheet(qss1);
+        ui->tableWidget->setCellWidget(i,3,widget[i]);
+    }
+
+    connect(delBtn[0], SIGNAL(clicked(bool)), this, SLOT(clearRow1()));
+    connect(delBtn[1], SIGNAL(clicked(bool)), this, SLOT(clearRow2()));
+    connect(delBtn[2], SIGNAL(clicked(bool)), this, SLOT(clearRow3()));
+    connect(delBtn[3], SIGNAL(clicked(bool)), this, SLOT(clearRow4()));
+    connect(delBtn[4], SIGNAL(clicked(bool)), this, SLOT(clearRow5()));
+
+    connect(checkBox[0],SIGNAL(stateChanged(int)),this,SLOT(setRow1()));
+    connect(checkBox[1],SIGNAL(stateChanged(int)),this,SLOT(setRow2()));
+    connect(checkBox[2],SIGNAL(stateChanged(int)),this,SLOT(setRow3()));
+    connect(checkBox[3],SIGNAL(stateChanged(int)),this,SLOT(setRow4()));
+    connect(checkBox[4],SIGNAL(stateChanged(int)),this,SLOT(setRow5()));
+
 
 
 }
@@ -149,6 +223,21 @@ void Widget::mouseReleaseEvent(QMouseEvent *event)
     this->z  = QPoint();
 }
 
+void Widget::keyPressEvent(QKeyEvent *event)
+{
+    if (event->key() == Qt::Key_Plus)
+    {
+        int next = ui->lineEdit_7->text().toInt();
+        next = next + ui->lineEdit_8->text().toInt();
+        ui->lineEdit_7->setText(QString::number(next));
+    }
+    if(event->key() == Qt::Key_Minus)
+    {
+        int next = ui->lineEdit_7->text().toInt();
+        next = next - ui->lineEdit_8->text().toInt();
+        ui->lineEdit_7->setText(QString::number(next));
+    }
+}
 
 //给按钮设置点击事件
 void Widget::on_btnClose_clicked()
@@ -219,7 +308,7 @@ void Widget::serialPort_readyRead()
         str[i] = p.substr(nPos[i] + len,nPos[i+1]);
         //QString str2 = QString::fromStdString(str[i]);
     }
-    setTableWidgetValue();
+    //setTableWidgetValue();
     //std::string::size_type nPos[] = p.find(flag);
     //p = p.substr(0, nPos);
     //QString str2 = QString::fromStdString(p);
@@ -230,10 +319,6 @@ void Widget::setTableWidgetValue()
 {
     for(int i = 0; i < 5; i++)
     {
-        newItem[counts] = new QTableWidgetItem;     //既然setSpan()函数破坏了itemAt()的索引，我们可以通过重新建立新的item的方式进行访问方法如下
-        ui->tableWidget->setItem(i, 3, newItem[counts]);
-        newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
         newItem[counts]->setText(QString::number(i));
         counts++;
 
@@ -249,17 +334,22 @@ void Widget::setTableWidgetValue()
         }
     }
 
-    newItem[counts] = new QTableWidgetItem;     //既然setSpan()函数破坏了itemAt()的索引，我们可以通过重新建立新的item的方式进行访问方法如下
-    ui->tableWidget->setItem(0, 4, newItem[counts]);
-    newItem[counts]->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    newItem[counts]->setText("1");
-    counts++;
+
 }
 
 void Widget::Table2Excel(QTableWidget *table,QString title)
 {
+    QString name = "/";
+    if(ui->tableWidget->item(0,1) == nullptr || (ui->tableWidget->item(0,1) && ui->tableWidget->item(0,1)->text() == ""))
+    {
+
+    }
+    else {
+        name = name + ui->tableWidget->item(0,1)->text() + ui->tableWidget->item(0,0)->text();;
+    }
+
     QString fileName = QFileDialog::getSaveFileName(table, "保存",
-        QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation),"Excel 文件(*.xls *.xlsx)");
+        name,"Excel 文件(*.xls *.xlsx)");
         if (fileName!="")
         {
             QAxObject *excel = new QAxObject;
@@ -353,3 +443,87 @@ void Widget::on_btnMin_clicked()
 {
     this->showMinimized();
 }
+
+void Widget::clearRow1()
+{
+    for(int i = 4; i < 10; i++)
+        newItem[i-1]->setText("");
+}
+
+void Widget::clearRow2()
+{
+    for(int i = 4; i < 10; i++)
+        newItem[i-1+6]->setText("");
+}
+void Widget::clearRow3()
+{
+    for(int i = 4; i < 10; i++)
+        newItem[i-1+12]->setText("");
+}
+void Widget::clearRow4()
+{
+    for(int i = 4; i < 10; i++)
+        newItem[i-1+18]->setText("");
+}
+void Widget::clearRow5()
+{
+    for(int i = 4; i < 10; i++)
+        newItem[i-1+24]->setText("");
+}
+
+
+//对于checkBox的槽函数的处理
+void Widget::setRow1()
+{
+    if(checkBox[0]->isChecked())
+    {
+        for(int i = 4; i < 10; i++)
+        {
+            newItem[i-1]->setText(QString::number(i-1));
+        }
+    }
+}
+
+void Widget::setRow2()
+{
+    if(checkBox[1]->isChecked())
+    {
+        for(int i = 4; i < 10; i++)
+        {
+            newItem[i-1+6]->setText(QString::number(i-1+6));
+        }
+    }
+
+}
+void Widget::setRow3()
+{
+    if(checkBox[2]->isChecked())
+    {
+        for(int i = 4; i < 10; i++)
+        {
+            newItem[i-1+12]->setText(QString::number(i-1+12));
+        }
+    }
+
+}
+void Widget::setRow4()
+{
+    if(checkBox[3]->isChecked())
+    {
+        for(int i = 4; i < 10; i++)
+        {
+            newItem[i-1+18]->setText(QString::number(i-1+18));
+        }
+    }
+}
+void Widget::setRow5()
+{
+    if(checkBox[4]->isChecked())
+    {
+        for(int i = 4; i < 10; i++)
+        {
+            newItem[i-1+24]->setText(QString::number(i-1+24));
+        }
+    }
+}
+

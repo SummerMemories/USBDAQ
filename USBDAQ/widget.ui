@@ -20,7 +20,6 @@
       <string notr="true">#shadowWidget
 {
 	border-radius:5px;
-	border-image: url(:/resource/2.jpg);
 	background-color: rgb(255, 255, 255);
 }</string>
      </property>
@@ -41,80 +40,107 @@
        <number>0</number>
       </property>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="spacing">
-         <number>0</number>
+       <widget class="QWidget" name="titleWidget" native="true">
+        <property name="styleSheet">
+         <string notr="true">#titleWidget
+{
+
+	background-color: rgb(85, 235, 235);
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}</string>
         </property>
-        <item>
-         <widget class="QLabel" name="title">
-          <property name="font">
-           <font>
-            <family>微软雅黑</family>
-            <pointsize>16</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>便携式开关操作箱继电器测试仪</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnMin">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>42</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>42</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnClose">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>42</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>42</width>
-            <height>42</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="title">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">
+border-top-left-radius:5px;</string>
+           </property>
+           <property name="text">
+            <string>    便携式开关操作箱继电器测试仪</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnMin">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>42</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>42</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnClose">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>42</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>42</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
        <widget class="QFrame" name="frame">
@@ -127,22 +153,10 @@
         <property name="styleSheet">
          <string notr="true">QLineEdit
 {
-        border: 2px solid gray;
-        
+        border: 2px solid gray; 
         padding: 0 8px;
         background:rgb(234, 234, 234);
         selection-background-color: darkgray;
-}
-QPushButton{
-		border: 2px solid #8f8f91;
-		border-radius: 6px;
-		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
-		min-width: 80px;
-}
-QPushButton:pressed{
-		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
 }</string>
         </property>
         <property name="frameShape">
@@ -165,6 +179,19 @@ QPushButton:pressed{
            <family>微软雅黑</family>
            <pointsize>10</pointsize>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+		border: 2px solid #8f8f91;
+		border-radius: 6px;
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+		min-width: 80px;
+}
+QPushButton:pressed{
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
          </property>
          <property name="text">
           <string>打开串口</string>
@@ -263,6 +290,19 @@ QComboBox QAbstractItemView::item:selected {
            <height>51</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+		border: 2px solid #8f8f91;
+		border-radius: 6px;
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+		min-width: 80px;
+}
+QPushButton:pressed{
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+         </property>
          <property name="text">
           <string>开始测试动作电压</string>
          </property>
@@ -276,6 +316,19 @@ QComboBox QAbstractItemView::item:selected {
            <height>51</height>
           </rect>
          </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+		border: 2px solid #8f8f91;
+		border-radius: 6px;
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+		min-width: 80px;
+}
+QPushButton:pressed{
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
+         </property>
          <property name="text">
           <string>开始测试动作时间</string>
          </property>
@@ -283,11 +336,24 @@ QComboBox QAbstractItemView::item:selected {
         <widget class="QPushButton" name="pushButton_3">
          <property name="geometry">
           <rect>
-           <x>550</x>
+           <x>560</x>
            <y>190</y>
            <width>211</width>
            <height>71</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+		border: 2px solid #8f8f91;
+		border-radius: 6px;
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+		min-width: 80px;
+}
+QPushButton:pressed{
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
          </property>
          <property name="text">
           <string>停止测试</string>
@@ -296,11 +362,24 @@ QComboBox QAbstractItemView::item:selected {
         <widget class="QPushButton" name="pushButton_4">
          <property name="geometry">
           <rect>
-           <x>920</x>
+           <x>950</x>
            <y>190</y>
            <width>221</width>
            <height>71</height>
           </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton{
+		border: 2px solid #8f8f91;
+		border-radius: 6px;
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #f6f7fa, stop: 1 #dadbde);
+		min-width: 80px;
+}
+QPushButton:pressed{
+		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                        stop: 0 #dadbde, stop: 1 #f6f7fa);
+}</string>
          </property>
          <property name="text">
           <string>自动测试</string>
@@ -451,7 +530,7 @@ border-style:outset
 }</string>
           </property>
           <property name="text">
-           <string>当前电压值:</string>
+           <string>设置电压值:</string>
           </property>
           <property name="frame">
            <bool>true</bool>
@@ -463,7 +542,7 @@ border-style:outset
          <widget class="QLineEdit" name="lineEdit_7">
           <property name="geometry">
            <rect>
-            <x>130</x>
+            <x>140</x>
             <y>5</y>
             <width>101</width>
             <height>41</height>
@@ -489,7 +568,7 @@ border-style:outset
 }</string>
           </property>
           <property name="text">
-           <string/>
+           <string>100</string>
           </property>
           <property name="frame">
            <bool>true</bool>
@@ -609,11 +688,30 @@ border-style:outset
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
+         <widget class="QLabel" name="label_6">
+          <property name="geometry">
+           <rect>
+            <x>220</x>
+            <y>15</y>
+            <width>72</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>V</string>
+          </property>
+         </widget>
         </widget>
         <widget class="QWidget" name="widget_3" native="true">
          <property name="geometry">
           <rect>
-           <x>610</x>
+           <x>930</x>
            <y>10</y>
            <width>261</width>
            <height>51</height>
@@ -667,7 +765,7 @@ border-style:outset
          <widget class="QLineEdit" name="lineEdit_9">
           <property name="geometry">
            <rect>
-            <x>130</x>
+            <x>140</x>
             <y>5</y>
             <width>101</width>
             <height>41</height>
@@ -693,7 +791,7 @@ border-style:outset
 }</string>
           </property>
           <property name="text">
-           <string/>
+           <string>0</string>
           </property>
           <property name="frame">
            <bool>true</bool>
@@ -706,7 +804,7 @@ border-style:outset
           <property name="geometry">
            <rect>
             <x>220</x>
-            <y>15</y>
+            <y>14</y>
             <width>72</width>
             <height>21</height>
            </rect>
@@ -725,7 +823,7 @@ border-style:outset
         <widget class="QPushButton" name="pushButton_5">
          <property name="geometry">
           <rect>
-           <x>430</x>
+           <x>480</x>
            <y>625</y>
            <width>371</width>
            <height>61</height>
@@ -746,7 +844,7 @@ border-style:outset
         <widget class="QLabel" name="label_3">
          <property name="geometry">
           <rect>
-           <x>880</x>
+           <x>1100</x>
            <y>600</y>
            <width>261</width>
            <height>91</height>
@@ -754,6 +852,146 @@ border-style:outset
          </property>
          <property name="text">
           <string/>
+         </property>
+        </widget>
+        <widget class="QWidget" name="widget_4" native="true">
+         <property name="geometry">
+          <rect>
+           <x>930</x>
+           <y>80</y>
+           <width>261</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget#widget_4{
+	border: 2px solid gray;
+	border-radius: 10px
+}</string>
+         </property>
+         <widget class="QLineEdit" name="lineEdit_3">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>5</y>
+            <width>131</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+	background:transparent;
+	border-width:0;
+border-style:outset
+}</string>
+          </property>
+          <property name="text">
+           <string>当前电压值:</string>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="lineEdit_10">
+          <property name="geometry">
+           <rect>
+            <x>140</x>
+            <y>5</y>
+            <width>101</width>
+            <height>41</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLineEdit{
+	background:transparent;
+	border-width:0;
+border-style:outset
+}</string>
+          </property>
+          <property name="text">
+           <string>0</string>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_5">
+          <property name="geometry">
+           <rect>
+            <x>225</x>
+            <y>15</y>
+            <width>72</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>V</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QGraphicsView" name="view">
+         <property name="geometry">
+          <rect>
+           <x>610</x>
+           <y>40</y>
+           <width>101</width>
+           <height>81</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_7">
+         <property name="geometry">
+          <rect>
+           <x>590</x>
+           <y>20</y>
+           <width>141</width>
+           <height>141</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>报警</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+         </property>
+         <property name="margin">
+          <number>10</number>
          </property>
         </widget>
        </widget>

@@ -1,0 +1,6 @@
+﻿QPushButton
+{
+    border:none;
+    border-top-right-radius:10px;
+    border-image:url(:/resource/del.jpg);
+}

@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -30,6 +31,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QWidget *shadowWidget;
     QVBoxLayout *verticalLayout;
+    QWidget *titleWidget;
     QHBoxLayout *horizontalLayout_2;
     QLabel *title;
     QPushButton *btnMin;
@@ -50,12 +52,19 @@ public:
     QWidget *widget_2;
     QLineEdit *lineEdit_2;
     QLineEdit *lineEdit_8;
+    QLabel *label_6;
     QWidget *widget_3;
     QLineEdit *lineEdit_5;
     QLineEdit *lineEdit_9;
     QLabel *label_4;
     QPushButton *pushButton_5;
     QLabel *label_3;
+    QWidget *widget_4;
+    QLineEdit *lineEdit_3;
+    QLineEdit *lineEdit_10;
+    QLabel *label_5;
+    QGraphicsView *view;
+    QLabel *label_7;
 
     void setupUi(QWidget *Widget)
     {
@@ -71,7 +80,6 @@ public:
         shadowWidget->setStyleSheet(QString::fromUtf8("#shadowWidget\n"
 "{\n"
 "	border-radius:5px;\n"
-"	border-image: url(:/resource/2.jpg);\n"
 "	background-color: rgb(255, 255, 255);\n"
 "}"));
         verticalLayout = new QVBoxLayout(shadowWidget);
@@ -79,20 +87,33 @@ public:
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout_2 = new QHBoxLayout();
+        titleWidget = new QWidget(shadowWidget);
+        titleWidget->setObjectName(QString::fromUtf8("titleWidget"));
+        titleWidget->setStyleSheet(QString::fromUtf8("#titleWidget\n"
+"{\n"
+"\n"
+"	background-color: rgb(85, 235, 235);\n"
+"	border-top-left-radius:5px;\n"
+"	border-top-right-radius:5px;\n"
+"}"));
+        horizontalLayout_2 = new QHBoxLayout(titleWidget);
         horizontalLayout_2->setSpacing(0);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        title = new QLabel(shadowWidget);
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        title = new QLabel(titleWidget);
         title->setObjectName(QString::fromUtf8("title"));
         QFont font;
         font.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
         font.setPointSize(16);
         title->setFont(font);
+        title->setStyleSheet(QString::fromUtf8("\n"
+"border-top-left-radius:5px;"));
         title->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_2->addWidget(title);
 
-        btnMin = new QPushButton(shadowWidget);
+        btnMin = new QPushButton(titleWidget);
         btnMin->setObjectName(QString::fromUtf8("btnMin"));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -104,7 +125,7 @@ public:
 
         horizontalLayout_2->addWidget(btnMin);
 
-        btnClose = new QPushButton(shadowWidget);
+        btnClose = new QPushButton(titleWidget);
         btnClose->setObjectName(QString::fromUtf8("btnClose"));
         sizePolicy.setHeightForWidth(btnClose->sizePolicy().hasHeightForWidth());
         btnClose->setSizePolicy(sizePolicy);
@@ -115,7 +136,7 @@ public:
         horizontalLayout_2->addWidget(btnClose);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        verticalLayout->addWidget(titleWidget);
 
         frame = new QFrame(shadowWidget);
         frame->setObjectName(QString::fromUtf8("frame"));
@@ -126,22 +147,10 @@ public:
         frame->setSizePolicy(sizePolicy1);
         frame->setStyleSheet(QString::fromUtf8("QLineEdit\n"
 "{\n"
-"        border: 2px solid gray;\n"
-"        \n"
+"        border: 2px solid gray; \n"
 "        padding: 0 8px;\n"
 "        background:rgb(234, 234, 234);\n"
 "        selection-background-color: darkgray;\n"
-"}\n"
-"QPushButton{\n"
-"		border: 2px solid #8f8f91;\n"
-"		border-radius: 6px;\n"
-"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
-"		min-width: 80px;\n"
-"}\n"
-"QPushButton:pressed{\n"
-"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
 "}"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
@@ -152,6 +161,17 @@ public:
         font1.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
         font1.setPointSize(10);
         btn_Openport->setFont(font1);
+        btn_Openport->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"		border: 2px solid #8f8f91;\n"
+"		border-radius: 6px;\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"		min-width: 80px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}"));
         ComName = new QComboBox(frame);
         ComName->setObjectName(QString::fromUtf8("ComName"));
         ComName->setGeometry(QRect(150, 630, 121, 51));
@@ -215,15 +235,59 @@ public:
         pushButton = new QPushButton(frame);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(130, 150, 261, 51));
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"		border: 2px solid #8f8f91;\n"
+"		border-radius: 6px;\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"		min-width: 80px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}"));
         pushButton_2 = new QPushButton(frame);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(130, 220, 261, 51));
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"		border: 2px solid #8f8f91;\n"
+"		border-radius: 6px;\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"		min-width: 80px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}"));
         pushButton_3 = new QPushButton(frame);
         pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(550, 190, 211, 71));
+        pushButton_3->setGeometry(QRect(560, 190, 211, 71));
+        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"		border: 2px solid #8f8f91;\n"
+"		border-radius: 6px;\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"		min-width: 80px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}"));
         pushButton_4 = new QPushButton(frame);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(920, 190, 221, 71));
+        pushButton_4->setGeometry(QRect(950, 190, 221, 71));
+        pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"		border: 2px solid #8f8f91;\n"
+"		border-radius: 6px;\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"		min-width: 80px;\n"
+"}\n"
+"QPushButton:pressed{\n"
+"		background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                        stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}"));
         tableWidget = new QTableWidget(frame);
         if (tableWidget->columnCount() < 10)
             tableWidget->setColumnCount(10);
@@ -295,7 +359,7 @@ public:
         lineEdit->setAlignment(Qt::AlignCenter);
         lineEdit_7 = new QLineEdit(widget);
         lineEdit_7->setObjectName(QString::fromUtf8("lineEdit_7"));
-        lineEdit_7->setGeometry(QRect(130, 5, 101, 41));
+        lineEdit_7->setGeometry(QRect(140, 5, 101, 41));
         sizePolicy2.setHeightForWidth(lineEdit_7->sizePolicy().hasHeightForWidth());
         lineEdit_7->setSizePolicy(sizePolicy2);
         lineEdit_7->setFont(font4);
@@ -343,9 +407,13 @@ public:
 "}"));
         lineEdit_8->setFrame(true);
         lineEdit_8->setAlignment(Qt::AlignCenter);
+        label_6 = new QLabel(widget_2);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(220, 15, 72, 21));
+        label_6->setFont(font4);
         widget_3 = new QWidget(frame);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
-        widget_3->setGeometry(QRect(610, 10, 261, 51));
+        widget_3->setGeometry(QRect(930, 10, 261, 51));
         widget_3->setStyleSheet(QString::fromUtf8("QWidget#widget_3\n"
 "{\n"
 "	border: 2px solid gray;;\n"
@@ -366,7 +434,7 @@ public:
         lineEdit_5->setAlignment(Qt::AlignCenter);
         lineEdit_9 = new QLineEdit(widget_3);
         lineEdit_9->setObjectName(QString::fromUtf8("lineEdit_9"));
-        lineEdit_9->setGeometry(QRect(130, 5, 101, 41));
+        lineEdit_9->setGeometry(QRect(140, 5, 101, 41));
         sizePolicy2.setHeightForWidth(lineEdit_9->sizePolicy().hasHeightForWidth());
         lineEdit_9->setSizePolicy(sizePolicy2);
         lineEdit_9->setFont(font4);
@@ -379,11 +447,11 @@ public:
         lineEdit_9->setAlignment(Qt::AlignCenter);
         label_4 = new QLabel(widget_3);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(220, 15, 72, 21));
+        label_4->setGeometry(QRect(220, 14, 72, 21));
         label_4->setFont(font4);
         pushButton_5 = new QPushButton(frame);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(430, 625, 371, 61));
+        pushButton_5->setGeometry(QRect(480, 625, 371, 61));
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton#pushButton_5\n"
 "\n"
 "{\n"
@@ -392,7 +460,52 @@ public:
 "}"));
         label_3 = new QLabel(frame);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(880, 600, 261, 91));
+        label_3->setGeometry(QRect(1100, 600, 261, 91));
+        widget_4 = new QWidget(frame);
+        widget_4->setObjectName(QString::fromUtf8("widget_4"));
+        widget_4->setGeometry(QRect(930, 80, 261, 51));
+        widget_4->setStyleSheet(QString::fromUtf8("QWidget#widget_4{\n"
+"	border: 2px solid gray;\n"
+"	border-radius: 10px\n"
+"}"));
+        lineEdit_3 = new QLineEdit(widget_4);
+        lineEdit_3->setObjectName(QString::fromUtf8("lineEdit_3"));
+        lineEdit_3->setGeometry(QRect(10, 5, 131, 41));
+        sizePolicy2.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
+        lineEdit_3->setSizePolicy(sizePolicy2);
+        lineEdit_3->setFont(font4);
+        lineEdit_3->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	background:transparent;\n"
+"	border-width:0;\n"
+"border-style:outset\n"
+"}"));
+        lineEdit_3->setFrame(true);
+        lineEdit_3->setAlignment(Qt::AlignCenter);
+        lineEdit_10 = new QLineEdit(widget_4);
+        lineEdit_10->setObjectName(QString::fromUtf8("lineEdit_10"));
+        lineEdit_10->setGeometry(QRect(140, 5, 101, 41));
+        sizePolicy2.setHeightForWidth(lineEdit_10->sizePolicy().hasHeightForWidth());
+        lineEdit_10->setSizePolicy(sizePolicy2);
+        lineEdit_10->setFont(font4);
+        lineEdit_10->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"	background:transparent;\n"
+"	border-width:0;\n"
+"border-style:outset\n"
+"}"));
+        lineEdit_10->setFrame(true);
+        lineEdit_10->setAlignment(Qt::AlignCenter);
+        label_5 = new QLabel(widget_4);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(225, 15, 72, 21));
+        label_5->setFont(font4);
+        view = new QGraphicsView(frame);
+        view->setObjectName(QString::fromUtf8("view"));
+        view->setGeometry(QRect(610, 40, 101, 81));
+        label_7 = new QLabel(frame);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(590, 20, 141, 141));
+        label_7->setAlignment(Qt::AlignBottom|Qt::AlignHCenter);
+        label_7->setMargin(10);
 
         verticalLayout->addWidget(frame);
 
@@ -408,7 +521,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
-        title->setText(QCoreApplication::translate("Widget", "\344\276\277\346\220\272\345\274\217\345\274\200\345\205\263\346\223\215\344\275\234\347\256\261\347\273\247\347\224\265\345\231\250\346\265\213\350\257\225\344\273\252", nullptr));
+        title->setText(QCoreApplication::translate("Widget", "    \344\276\277\346\220\272\345\274\217\345\274\200\345\205\263\346\223\215\344\275\234\347\256\261\347\273\247\347\224\265\345\231\250\346\265\213\350\257\225\344\273\252", nullptr));
         btnMin->setText(QString());
         btnClose->setText(QString());
         btn_Openport->setText(QCoreApplication::translate("Widget", "\346\211\223\345\274\200\344\270\262\345\217\243", nullptr));
@@ -454,16 +567,21 @@ public:
         tableWidget->setSortingEnabled(false);
         tableWidget->setSortingEnabled(__sortingEnabled);
 
-        lineEdit->setText(QCoreApplication::translate("Widget", "\345\275\223\345\211\215\347\224\265\345\216\213\345\200\274:", nullptr));
-        lineEdit_7->setText(QString());
+        lineEdit->setText(QCoreApplication::translate("Widget", "\350\256\276\347\275\256\347\224\265\345\216\213\345\200\274:", nullptr));
+        lineEdit_7->setText(QCoreApplication::translate("Widget", "100", nullptr));
         label_2->setText(QCoreApplication::translate("Widget", "V", nullptr));
         lineEdit_2->setText(QCoreApplication::translate("Widget", "\350\256\276\347\275\256\346\255\245\350\277\233\347\224\265\345\216\213:", nullptr));
         lineEdit_8->setText(QCoreApplication::translate("Widget", "1", nullptr));
+        label_6->setText(QCoreApplication::translate("Widget", "V", nullptr));
         lineEdit_5->setText(QCoreApplication::translate("Widget", "\345\275\223\345\211\215\347\224\265\346\265\201:", nullptr));
-        lineEdit_9->setText(QString());
+        lineEdit_9->setText(QCoreApplication::translate("Widget", "0", nullptr));
         label_4->setText(QCoreApplication::translate("Widget", "mA", nullptr));
         pushButton_5->setText(QCoreApplication::translate("Widget", "\344\277\235\345\255\230", nullptr));
         label_3->setText(QString());
+        lineEdit_3->setText(QCoreApplication::translate("Widget", "\345\275\223\345\211\215\347\224\265\345\216\213\345\200\274:", nullptr));
+        lineEdit_10->setText(QCoreApplication::translate("Widget", "0", nullptr));
+        label_5->setText(QCoreApplication::translate("Widget", "V", nullptr));
+        label_7->setText(QCoreApplication::translate("Widget", "\346\212\245\350\255\246", nullptr));
     } // retranslateUi
 
 };

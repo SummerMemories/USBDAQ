@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>style/style.qss</file>
+        <file>style/checkBox.qss</file>
+        <file>style/Button.qss</file>
     </qresource>
 </RCC>

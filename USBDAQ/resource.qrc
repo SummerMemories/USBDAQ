@@ -8,5 +8,13 @@
         <file>resource/min_hover.png</file>
         <file>resource/min_normal.png</file>
         <file>resource/min_press.png</file>
+        <file>resource/checkbox_hover.png</file>
+        <file>resource/checkbox_normal.png</file>
+        <file>resource/checkbox_press.png</file>
+        <file>resource/checkbox_tick_highlight.png</file>
+        <file>resource/checkbox_tick_normal.png</file>
+        <file>resource/checkbox_tick_pushed.png</file>
+        <file>resource/del.jpg</file>
+        <file>resource/del1.jpg</file>
     </qresource>
 </RCC>

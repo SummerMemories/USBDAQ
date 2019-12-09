@@ -5,6 +5,8 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QMessageBox>
+#include <QCheckBox>
+#include <QHBoxLayout>
 #include <QProcess>
 #include <QMouseEvent>
 #include <QPushButton>
@@ -13,6 +15,7 @@
 #include <QPainter>
 #include <QPoint>
 #include <QFile>
+#include <QKeyEvent>
 #include <QDebug>
 #include <QTimer>
 #include <QTableWidgetItem>
@@ -22,6 +25,8 @@
 #include <QDesktopServices>
 #include <QMessageBox>
 #include <QAxObject>
+
+#include "flashitem.h"
 
 #pragma execution_character_set("utf-8")
 
@@ -53,6 +58,7 @@ public:
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
+    virtual void keyPressEvent(QKeyEvent * event);
 
 private:
     Ui::Widget *ui;
@@ -62,6 +68,7 @@ private:
 
     QTimer *m_Timer;
     QSerialPort serial;
+    QGraphicsScene *scene;
     QStringList m_portNameList;
 
     std::string flag[50];
@@ -70,6 +77,10 @@ private:
 
     QTableWidgetItem *newItem[50];
 
+    QWidget *widget[5];
+    QPushButton *delBtn[5];
+    QCheckBox *checkBox[5];
+
 
 private slots:
     void serialPort_readyRead();
@@ -77,6 +88,18 @@ private slots:
     void on_btn_Openport_clicked();
     void on_pushButton_5_clicked();
     void on_btnMin_clicked();
+
+    void clearRow1();
+    void clearRow2();
+    void clearRow3();
+    void clearRow4();
+    void clearRow5();
+
+    void setRow1();
+    void setRow2();
+    void setRow3();
+    void setRow4();
+    void setRow5();
 };
 
 #endif // WIDGET_H

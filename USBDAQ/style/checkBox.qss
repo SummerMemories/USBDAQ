@@ -1,0 +1,41 @@
+﻿QCheckBox{
+        spacing: 5px;
+        color: white;
+}
+
+QCheckBox::indicator
+{
+    width: 26px;
+    height: 26px;
+}
+
+QCheckBox:indicator:enabled:unchecked
+{
+    image: url(:/resource/checkbox_normal.png);
+}
+ 
+QCheckBox::indicator:enabled:unchecked:hover
+{
+    image: url(:/resource/checkbox_hover.png);
+}
+
+QCheckBox::indicator:enabled:unchecked:pressed 
+{
+    image: url(:/resource/checkbox_press.png);
+}
+
+QCheckBox::indicator:enabled:checked
+{
+    image: url(:/resource/checkbox_tick_normal.png);
+}
+
+QCheckBox::indicator:enabled:checked:hover 
+{
+    image: url(:/resource/checkbox_tick_highlight.png);
+}
+
+QCheckBox::indicator:enabled:checked:pressed
+{
+    image: url(:/resource/checkbox_tick_pushed.png);
+}
+
